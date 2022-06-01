@@ -52,7 +52,8 @@ function Header() {
           </div>
         </Tippy>
         <div className={cx('action')}>
-          <Button>Log in</Button>
+          <Button text>Upload</Button>
+          <Button primary>Log in</Button>
         </div>
       </div>
       <div></div>
