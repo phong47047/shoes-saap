@@ -4,13 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleQuestion,
   faCircleXmark,
-  faCloudUpload,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
   faGear,
   faKeyboard,
-  faMagnifyingGlass,
   faSignOut,
   faSpinner,
   faUser,
@@ -25,6 +23,9 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import { MessageIcon, NotificationIcon, SearchIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
+
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -130,7 +131,7 @@ function Header() {
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
             <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon />
             </button>
           </div>
         </HeadlessTippy>
@@ -140,7 +141,17 @@ function Header() {
             <>
               <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <UploadIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Tin nhắn" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 200]} content="Hộp thư" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <NotificationIcon />
                 </button>
               </Tippy>
             </>
@@ -153,10 +164,11 @@ function Header() {
 
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 src="https://i.pinimg.com/564x/50/6c/6f/506c6fb94eb260035bf7d7571dbd0346.jpg"
                 className={cx('user-avatar')}
                 alt="Nguyen Van A"
+                // fallback="https://i.pinimg.com/564x/90/df/5f/90df5ffb99cd288c86deb510ec60454f.jpg"
               />
             ) : (
               <button className={cx('more-btn')}>
