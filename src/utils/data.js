@@ -32,3 +32,41 @@ export const heroData = [
     imageSrc: S4,
   },
 ];
+
+export const categories = [
+  {
+    id: 1,
+    name: 'Sneaker',
+    urlParamName: 'Sneaker',
+  },
+  {
+    id: 2,
+    name: 'Adidas',
+    urlParamName: 'Adidas',
+  },
+  {
+    id: 3,
+    name: 'Loafer',
+    urlParamName: 'Loafer',
+  },
+  {
+    id: 4,
+    name: 'Cao gót',
+    urlParamName: 'Cao gót',
+  },
+  {
+    id: 5,
+    name: 'Ủng',
+    urlParamName: 'Ủng',
+  },
+  {
+    id: 6,
+    name: 'Sport',
+    urlParamName: 'Sport',
+  },
+  {
+    id: 7,
+    name: 'Sandal',
+    urlParamName: 'Sandal',
+  },
+];
