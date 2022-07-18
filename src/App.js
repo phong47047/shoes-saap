@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 import { CreateContainer, Header, MainContainer } from './components';
+import { useStateValue } from './context/StateProvider';
+import { getAllShoesItems } from './utils/firebaseFunctions';
+import { actionType } from './context/reducer';
 
 function App() {
+  const [{ shoesItems }, dispatch] = useStateValue();
+
+  const fetchData = async () => {
+    await getAllShoesItems().then((data) => {
+      dispatch({
+        type: actionType.SET_SHOES_ITEMS,
+        shoesItems: data,
+      });
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <AnimatePresence exitBeforeEnter>
       <div className="w-screen h-auto flex flex-col bg-primary">

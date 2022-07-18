@@ -18,7 +18,9 @@ import {
 } from 'firebase/storage';
 import { storage } from '~/firebase.config';
 import { upload } from '@testing-library/user-event/dist/upload';
-import { saveItem } from '~/utils/firebaseFunctions';
+import { getAllShoesItems, saveItem } from '~/utils/firebaseFunctions';
+import { actionType } from '~/context/reducer';
+import { useStateValue } from '~/context/StateProvider';
 
 const CreateContainer = () => {
   const [title, setTitle] = useState('');
@@ -30,6 +32,8 @@ const CreateContainer = () => {
   const [alertStatus, setAlertStatus] = useState('danger');
   const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [{ shoesItems }, dispatch] = useStateValue();
 
   const uploadImage = (e) => {
     setIsLoading(true);
@@ -122,6 +126,8 @@ const CreateContainer = () => {
         setIsLoading(false);
       }, 4000);
     }
+
+    fetchData();
   };
 
   const clearData = () => {
@@ -130,6 +136,15 @@ const CreateContainer = () => {
     setCalories('');
     setPrice('');
     setCalories('Select Category');
+  };
+
+  const fetchData = async () => {
+    await getAllShoesItems().then((data) => {
+      dispatch({
+        type: actionType.SET_SHOES_ITEMS,
+        shoesItems: data,
+      });
+    });
   };
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
@@ -148,7 +163,7 @@ const CreateContainer = () => {
                 : 'bg-emerald-400 text-emerald-800'
             }`}
           >
-            Thành Công
+            {msg}
           </motion.p>
         )}
 
