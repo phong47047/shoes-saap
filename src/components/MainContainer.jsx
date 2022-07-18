@@ -3,8 +3,11 @@ import { HomeContainer, RowContainer } from '.';
 import { motion } from 'framer-motion';
 
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import { useStateValue } from '~/context/StateProvider';
 
 const MainContainer = () => {
+  const [{ shoesItems }, dispatch] = useStateValue();
+
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
@@ -33,7 +36,10 @@ const MainContainer = () => {
             </motion.div>
           </div>
         </div>
-        <RowContainer flag={true} />
+        <RowContainer
+          flag={true}
+          data={shoesItems?.filter((n) => n.category === 'Sneaker')}
+        />
       </section>
     </div>
   );
