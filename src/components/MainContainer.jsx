@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HomeContainer, MenuContainer, RowContainer } from '.';
+import { CartContainer, HomeContainer, MenuContainer, RowContainer } from '.';
 import { motion } from 'framer-motion';
 
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
@@ -48,6 +48,7 @@ const MainContainer = () => {
         />
       </section>
       <MenuContainer />
+      <CartContainer />
     </div>
   );
 };
